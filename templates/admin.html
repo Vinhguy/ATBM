@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quản trị</title>
+</head>
+<body>
+    <h1>Giao diện quản trị</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: {{ 'green' if category == 'success' else 'red' }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h2>Danh sách người dùng</h2>
+    <table border="1">
+        <tr>
+            <th>Tên người dùng</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th>Hành động</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ 'Hoạt động' if not user[1] else 'Bị khóa' }}</td>
+            <td>{{ user[2] }}</td>
+            <td>
+                {% if user[1] %}
+                    <a href="{{ url_for('unlock_account', username=user[0]) }}">Mở khóa</a>
+                {% endif %}
+                <a href="{{ url_for('delete_account', username=user[0]) }}">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Lịch sử đăng nhập</h2>
+    <table border="1">
+        <tr>
+            <th>Tên người dùng</th>
+            <th>Trạng thái</th>
+            <th>Thời gian</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log[0] }}</td>
+            <td>{{ 'Thành công' if log[1] == 'success' else 'Thất bại' }}</td>
+            <td>{{ log[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Quay lại</a>
+</body>
+</html>

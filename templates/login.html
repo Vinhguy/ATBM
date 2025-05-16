@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập</title>
+</head>
+<body>
+    <h1>Đăng nhập</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: {{ 'green' if category == 'success' else 'red' }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label>Tên người dùng:</label>
+        <input type="text" name="username" required><br>
+        <label>Mật khẩu:</label>
+        <input type="password" name="password" required><br>
+        <button type="submit">Đăng nhập</button>
+    </form>
+    <a href="{{ url_for('register') }}">Chưa có tài khoản? Đăng ký</a>
+</body>
+</html>
