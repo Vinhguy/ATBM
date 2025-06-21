@@ -1,0 +1,17 @@
+Lib/
+.vscode/
+.idea/
+.vscode/
+.vscode/
+
+
+
+Include/
+/Scripts/
+pyvenv.cfg
+
+
+
+
+
+

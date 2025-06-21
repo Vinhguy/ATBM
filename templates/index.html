@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Trang chủ{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Chào mừng đến với Hệ thống xác thực</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p>Vui lòng <a href="{{ url_for('register') }}">đăng ký</a> hoặc <a href="{{ url_for('login') }}">đăng nhập</a> để bắt đầu.</p>
+                    <p>Quản trị viên? Truy cập <a href="{{ url_for('admin') }}">bảng quản trị</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

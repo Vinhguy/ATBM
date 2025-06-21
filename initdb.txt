@@ -1,0 +1,17 @@
+CREATE DATABASE user_auth;
+USE user_auth;
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    salt VARCHAR(32) NOT NULL,
+    encrypted_password VARCHAR(255) NOT NULL,
+    fail_attempts INT DEFAULT 0,
+    is_locked BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE login_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    status ENUM('success', 'failure') NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
